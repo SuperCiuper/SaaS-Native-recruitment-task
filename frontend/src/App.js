@@ -1,16 +1,16 @@
-import { Routes, Route } from "react-router-dom";
-import { ApiaryView } from "./views";
+import { Outlet } from "react-router-dom";
+import "./App.css";
+import { Footer, Header } from "./layouts";
 
 const App = () => {
   return (
-    <>
-      <p>XD</p>
-      <Routes>
-        <Route path="/" element={<ApiaryView />} />
-        <Route path="/apiaryList" element={<ApiaryView />} />
-      </Routes>
-      <p>adas</p>
-    </>
+    <div className="App">
+      <Header />
+      <div className="Content">
+        <Outlet />
+      </div>
+      <Footer />
+    </div>
   );
 };
 
