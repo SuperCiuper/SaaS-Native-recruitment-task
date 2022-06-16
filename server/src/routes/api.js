@@ -66,7 +66,6 @@ router.post("/apiaries", (req, res, next) => {
 
     number += calculateControlSum(number);
     newApiary.number = number;
-    console.log(newApiary);
     apiaryList.push(newApiary);
 
     res.sendStatus(200);

@@ -1,6 +1,9 @@
 {
   "name": "frontend",
   "version": "0.1.0",
+  "description": "SaaS Native recruitment task; frontend dla systemu zarządzania pasiekami",
+  "author": "Szymon Hutnik",
+
   "private": true,
   "dependencies": {
     "@testing-library/jest-dom": "^5.16.4",

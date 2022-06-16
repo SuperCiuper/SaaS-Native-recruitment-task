@@ -76,7 +76,6 @@ const AddApiaryModal = ({ apiariesRefresh, visibilityToggle, visible }) => {
                     alert("Apiary added successfully");
                     apiariesRefresh();
                   } else {
-                    console.log(response);
                     response = await response.json();
                     alert(response);
                   }
