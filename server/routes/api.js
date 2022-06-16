@@ -26,7 +26,6 @@ const calculateControlSum = (number) => {
 };
 
 router.post("/apiaries", (req, res, next) => {
-  console.log(req.body);
   let newApiary = req.body;
 
   try {
@@ -39,13 +38,22 @@ router.post("/apiaries", (req, res, next) => {
   try {
     let date = new Date();
     newApiary.date = date.toLocaleDateString("pl-PL");
-    console.log(newApiary);
 
     let number = date.toISOString().split("T")[0];
     number = number.split("-").join("");
 
-    let val =
-      apiaryList.filter((item) => newApiary.date === item.date).length + 1;
+    // sort by date then id to allow finding first free id number
+    apiaryList.sort((a, b) => {
+      return a.number.slice(0, -3) - b.number.slice(0, -3);
+    });
+
+    let val = apiaryList
+      .filter((item) => newApiary.date === item.date)
+      .reduce((previousVal, item) => {
+        return parseInt(item.number.slice(8, -3)) === previousVal
+          ? ++previousVal
+          : previousVal;
+      }, 1);
 
     if (newApiary.number === "") number += String(val).padStart(5, "0");
     else if (newApiary.number <= 0 || newApiary.number >= 100000)

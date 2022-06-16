@@ -5,6 +5,7 @@ import "./AddApiaryModal.css";
 const AddApiaryModal = ({ apiariesRefresh, visibilityToggle, visible }) => {
   const [selectedName, setSelectedName] = useState("");
   const [selectedNumber, setSelectedNumber] = useState("");
+  const [numberDisabled, setNumberDisabled] = useState(true);
 
   return (
     <div
@@ -21,7 +22,6 @@ const AddApiaryModal = ({ apiariesRefresh, visibilityToggle, visible }) => {
           <input
             value={selectedName}
             type="text"
-            name="name"
             placeholder="Your apiary name"
             onChange={(event) => {
               setSelectedName(event.target.value);
@@ -29,6 +29,32 @@ const AddApiaryModal = ({ apiariesRefresh, visibilityToggle, visible }) => {
           />
         </label>
         <br />
+        <label>
+          Apiary number: &nbsp;
+          <input
+            disabled={numberDisabled}
+            value={selectedNumber}
+            type="number"
+            placeholder="Your apiary number"
+            onChange={(event) => {
+              setSelectedNumber(event.target.value);
+            }}
+          />
+        </label>
+        <br />
+        <label>
+          Defult apiary number: &nbsp;
+          <input
+            checked={numberDisabled}
+            type="checkbox"
+            onChange={(event) => {
+              setNumberDisabled(event.target.checked);
+              if (event.target.checked) {
+                setSelectedNumber("");
+              }
+            }}
+          />
+        </label>
         <button
           className="AddApiaryBtn"
           onClick={() => {
@@ -59,6 +85,7 @@ const AddApiaryModal = ({ apiariesRefresh, visibilityToggle, visible }) => {
 
               setSelectedName("");
               setSelectedNumber("");
+              setNumberDisabled(true);
             } else {
               alert("Provide valid name");
             }
@@ -66,18 +93,6 @@ const AddApiaryModal = ({ apiariesRefresh, visibilityToggle, visible }) => {
         >
           Add Apiary
         </button>
-        <label>
-          Apiary number: &nbsp;
-          <input
-            value={selectedNumber}
-            type="number"
-            name="number"
-            placeholder="Your apiary number"
-            onChange={(event) => {
-              setSelectedNumber(event.target.value);
-            }}
-          />
-        </label>
       </div>
     </div>
   );
